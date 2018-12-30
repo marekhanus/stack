@@ -4,7 +4,7 @@ class StackScale {
     companion object {
         const val gameSize: Double = 400.0
 
-        const val stackInitBlockPositionY: Double = 0.7
+        const val stackInitBlockPositionY: Double = 0.8
 
         const val stackBlockScale: Double = 150.0
         const val stackBlockWidth: Double = 1.0

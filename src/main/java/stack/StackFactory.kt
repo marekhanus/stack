@@ -7,7 +7,7 @@ import stack.control.StackMoveControl
 @SetEntityFactory
 class StackFactory : EntityFactory {
 
-    private var position: Double = FXGL.getApp().height.toDouble() * StackScale.stackInitBlockPositionY
+    private var position: Double = FXGL.getApp().height.toDouble() * StackScale.stackInitBlockPositionY - FXGL.getApp().width.toDouble() * StackScale.stackBlockHeight / 2.0
     private var direction: StackDirection = StackDirection.LEFT
 
     @Spawns("Player")
