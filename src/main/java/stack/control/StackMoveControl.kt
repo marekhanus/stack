@@ -7,6 +7,7 @@ import com.almasb.fxgl.entity.component.PositionComponent
 import stack.StackBlock
 import stack.StackDirection
 import stack.StackOrientation
+import stack.StackScale
 
 class StackMoveControl(
         var direction: StackDirection,
@@ -23,8 +24,8 @@ class StackMoveControl(
             return
         }
 
-        position.x += 1.0 * (if (direction == StackDirection.LEFT) 1 else -1)
-        position.y += 1.0 * (if (orientation == StackOrientation.DOWN) 1 else -1)
+        position.x += StackScale.stackBlockWidth * (if (direction == StackDirection.LEFT) 1 else -1)
+        position.y += StackScale.stackBlockHeight * (if (orientation == StackOrientation.DOWN) 1 else -1)
 
         if (
                 position.x == minPosition || position.y == minPosition ||
