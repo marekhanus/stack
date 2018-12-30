@@ -1,23 +1,39 @@
 package stack
 
 import javafx.application.Application
-import javafx.fxml.FXMLLoader
-import javafx.scene.Parent
+import javafx.scene.Group
 import javafx.scene.Scene
+import javafx.scene.canvas.Canvas
 import javafx.stage.Stage
-import java.net.URL
-import java.util.Objects
+import javafx.scene.paint.Color
+import javafx.scene.paint.Paint
+import javafx.scene.shape.Rectangle
 
 class Main : Application() {
 
     @Throws(Exception::class)
     override fun start(primaryStage: Stage) {
-        val root = FXMLLoader.load<Parent>(
-            Objects.requireNonNull<URL>(javaClass.classLoader.getResource("stack/view.fxml"))
-        )
         primaryStage.title = "Stack"
-        primaryStage.scene = Scene(root, (1080 / 2).toDouble(), (1920 / 2).toDouble())
+        val root = Group()
+        val canvas = Canvas((1080 / 2).toDouble(), (1920 / 2).toDouble())
+        val gc = canvas.graphicsContext2D
+        gc.fill = Color.GREEN
+        gc.stroke = Color.BLUE
+
+        root.children.add(canvas)
+        primaryStage.scene = Scene(root)
         primaryStage.show()
+
+        val r = Rectangle()
+        r.x = 50.0
+        r.y = 50.0
+        r.width = 200.0
+        r.height = 100.0
+        r.arcWidth = 20.0
+        r.arcHeight = 20.0
+        r.fill = Paint.valueOf("blue")
+
+        gc.fillRect(10.0,10.0,10.0,10.0)
     }
 
     companion object {
