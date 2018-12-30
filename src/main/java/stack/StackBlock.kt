@@ -8,9 +8,9 @@ class StackBlock(
         private val view: EntityView = EntityView()
 ) {
     companion object {
-        const val width: Double = StackScale.stackBlock * 1.0
-        const val height: Double = StackScale.stackBlock * 0.7
-        const val thickness: Double = StackScale.stackBlock * 0.1
+        const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
+        const val height: Double = StackScale.stackBlockScale * StackScale.stackBlockHeight
+        const val thickness: Double = StackScale.stackBlockScale * StackScale.stackBlockThickness
     }
 
     fun get(): EntityView {
