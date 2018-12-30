@@ -19,6 +19,7 @@ class Stack : GameApplication() {
     }
 
     override fun initGame() {
+        gameWorld.spawn("Player")
         gameWorld.spawn("Block")
     }
 
