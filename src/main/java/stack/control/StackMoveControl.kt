@@ -9,13 +9,13 @@ import stack.StackDirection
 import stack.StackOrientation
 
 class StackMoveControl(
-        private val minPosition: Double = - StackBlock.width / 2.0,
-        private val maxPosition: Double = FXGL.getApp().width - StackBlock.width / 2.0
+        private var direction: StackDirection = StackDirection.RIGHT,
+        private var orientation: StackOrientation = StackOrientation.DOWN
 ) : Control() {
 
     private val position: PositionComponent = PositionComponent()
-    private var direction: StackDirection = StackDirection.LEFT
-    private var orientation: StackOrientation = StackOrientation.DOWN
+    private val minPosition: Double = - StackBlock.width / 2.0
+    private val maxPosition: Double = FXGL.getApp().width - StackBlock.width / 2.0
 
     override fun onUpdate(p0: Entity?, p1: Double) {
         position.x += 1.0 * (if (direction == StackDirection.LEFT) 1 else -1)
