@@ -16,7 +16,7 @@ class StackFactory : EntityFactory {
                 .from(data)
                 .viewFromNode(StackBlock().get())
                 .with(BlockControl())
-                .with(StackMoveControl())
+                .with(StackMoveControl(StackDirection.LEFT))
                 .build()
     }
 

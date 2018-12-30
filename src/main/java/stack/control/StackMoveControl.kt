@@ -9,7 +9,7 @@ import stack.StackDirection
 import stack.StackOrientation
 
 class StackMoveControl(
-        private var direction: StackDirection = StackDirection.RIGHT,
+        private var direction: StackDirection,
         private var orientation: StackOrientation = StackOrientation.DOWN
 ) : Control() {
 
