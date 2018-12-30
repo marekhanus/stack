@@ -5,10 +5,10 @@ import javafx.scene.paint.Color
 import javafx.scene.shape.Polygon
 
 class StackBlock(
-    private val view: EntityView = EntityView(),
-    private val width: Double = 50.0,
-    private val height: Double = 35.0,
-    private val thickness: Double = 5.0
+        private val view: EntityView = EntityView(),
+        private val width: Double = StackScale.stackBlock * 1.0,
+        private val height: Double = StackScale.stackBlock * 0.7,
+        private val thickness: Double = StackScale.stackBlock * 0.1
 ) {
 
     fun get(): EntityView {
