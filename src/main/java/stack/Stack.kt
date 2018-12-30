@@ -11,6 +11,7 @@ import stack.control.StackMoveControl
 class Stack : GameApplication() {
 
     private var player: Entity? = null
+    private var direction: StackDirection = StackDirection.RIGHT
     private var stackMoveControl: StackMoveControl? = null
 
     override fun initSettings(settings: GameSettings) {
@@ -39,6 +40,8 @@ class Stack : GameApplication() {
     private fun spawnPlayer() {
         player = gameWorld.spawn("Player")
         stackMoveControl = player?.getControl(StackMoveControl::class.java)
+        stackMoveControl?.direction = direction
+        direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
     }
 }
 
