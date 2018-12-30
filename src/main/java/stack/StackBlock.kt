@@ -5,7 +5,16 @@ import javafx.scene.paint.Color
 import javafx.scene.shape.Polygon
 
 class StackBlock(
-        private val view: EntityView = EntityView()
+        private val view: EntityView = EntityView(),
+        private var leftCornerX: Double = 0.0,
+        private var leftCornerY: Double = 0.0,
+        private var topCornerX: Double = 0.0,
+        private var topCornerY: Double = 0.0,
+        private var rightCornerX: Double = 0.0,
+        private var rightCornerY: Double = 0.0,
+        private var bottomCornerX: Double = 0.0,
+        private var bottomCornerY: Double = 0.0
+
 ) {
     companion object {
         const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
@@ -20,6 +29,18 @@ class StackBlock(
     init {
         val color = Color.GRAY
 
+        leftCornerX = 0.0
+        leftCornerY = height / 2.0
+
+        topCornerX = width / 2.0
+        topCornerY = 0.0
+
+        rightCornerX = width
+        rightCornerY = height / 2.0
+
+        bottomCornerX = width / 2.0
+        bottomCornerY = height
+
         view.addNode(this.getBaseBlock(color))
         view.addNode(this.getBottomLeftBlock(color.darker().darker()))
         view.addNode(this.getBottomRightBlock(color.darker()))
@@ -27,10 +48,10 @@ class StackBlock(
 
     private fun getBaseBlock(color: Color): Polygon {
         val block = Polygon(
-                0.0, height / 2.0, // left corner
-                width / 2.0, 0.0, // top corner
-                width, height / 2.0, // right corner
-                width / 2.0, height // bottom corner
+                leftCornerX, leftCornerY,
+                topCornerX, topCornerY,
+                rightCornerX, rightCornerY,
+                bottomCornerX, bottomCornerY
         )
 
         block.fill = color
@@ -40,10 +61,10 @@ class StackBlock(
 
     private fun getBottomLeftBlock(color: Color): Polygon {
         val block = Polygon(
-                0.0, height / 2.0, // top left corner
-                width / 2.0, height, // top right corner
-                width / 2.0, height + thickness, // bottom right corner
-                0.0, height / 2.0 + thickness // bottom left corner
+                leftCornerX, leftCornerY, // top left corner
+                bottomCornerX, bottomCornerY, // top right corner
+                bottomCornerX, bottomCornerY + thickness, // bottom right corner
+                leftCornerX, leftCornerY + thickness // bottom left corner
         )
 
         block.fill = color
@@ -53,10 +74,10 @@ class StackBlock(
 
     private fun getBottomRightBlock(color: Color): Polygon {
         val block = Polygon(
-                width / 2.0, height, // top left corner
-                width, height / 2.0, // top right corner
-                width, height / 2.0 + thickness, // bottom right corner
-                width / 2.0, height + thickness // bottom left corner
+                bottomCornerX, bottomCornerY, // top left corner
+                rightCornerX, rightCornerY, // top right corner
+                rightCornerX, rightCornerY + thickness, // bottom right corner
+                bottomCornerX, bottomCornerY + thickness // bottom left corner
         )
 
         block.fill = color
