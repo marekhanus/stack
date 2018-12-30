@@ -13,6 +13,7 @@ class StackBlock(private val view: EntityView = EntityView(), val size: Double =
     init {
         view.addNode(this.getBaseBlock())
         view.addNode(this.getBottomLeftBlock())
+        view.addNode(this.getBottomRightBlock())
     }
 
     private fun getBaseBlock(): Polygon {
@@ -34,6 +35,19 @@ class StackBlock(private val view: EntityView = EntityView(), val size: Double =
                 size / 2.0, size, // top right corner
                 size / 2.0, size + height, // bottom right corner
                 0.0, size / 2.0 + height // bottom left corner
+        )
+
+        block.fill = Color.DARKSLATEGRAY
+
+        return block
+    }
+
+    private fun getBottomRightBlock(): Polygon {
+        val block = Polygon(
+                size / 2.0, size, // top left corner
+                size, size / 2.0, // top right corner
+                size, size / 2.0 + height, // bottom right corner
+                size / 2.0, size + height // bottom left corner
         )
 
         block.fill = Color.DARKGRAY
