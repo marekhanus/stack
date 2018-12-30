@@ -6,7 +6,7 @@ import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.entity.component.PositionComponent
 import stack.StackBlock
 
-class MoveControl : Control() {
+class StackMoveControl : Control() {
 
     private val position: PositionComponent = PositionComponent()
     private var direction: Boolean = true
