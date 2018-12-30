@@ -14,7 +14,7 @@ class StackFactory : EntityFactory {
         return Entities.builder()
                 .type(StackType.BLOCK_ELEMENT)
                 .from(data)
-                .viewFromNodeWithBBox(Rectangle(25.0, 25.0, Color.BLUE))
+                .viewFromNode(StackBlock().get())
                 .with(BlockControl())
                 .with(MoveControl())
                 .build()
