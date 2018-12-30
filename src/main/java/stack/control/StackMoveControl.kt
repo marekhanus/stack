@@ -13,11 +13,16 @@ class StackMoveControl(
         private var orientation: StackOrientation = StackOrientation.DOWN
 ) : Control() {
 
+    private var isMovable: Boolean = true
     private val position: PositionComponent = PositionComponent()
     private val minPosition: Double = - StackBlock.width / 2.0
     private val maxPosition: Double = FXGL.getApp().width - StackBlock.width / 2.0
 
     override fun onUpdate(p0: Entity?, p1: Double) {
+        if (!isMovable) {
+            return
+        }
+
         position.x += 1.0 * (if (direction == StackDirection.LEFT) 1 else -1)
         position.y += 1.0 * (if (orientation == StackOrientation.DOWN) 1 else -1)
 
@@ -28,5 +33,9 @@ class StackMoveControl(
             direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
             orientation = if (orientation == StackOrientation.DOWN) StackOrientation.UP else StackOrientation.DOWN
         }
+    }
+
+    fun releaseBlock() {
+        isMovable = false
     }
 }
