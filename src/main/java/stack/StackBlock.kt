@@ -16,12 +16,14 @@ class StackBlock(
     }
 
     init {
-        view.addNode(this.getBaseBlock())
-        view.addNode(this.getBottomLeftBlock())
-        view.addNode(this.getBottomRightBlock())
+        val color = Color.GRAY
+
+        view.addNode(this.getBaseBlock(color))
+        view.addNode(this.getBottomLeftBlock(color.darker().darker()))
+        view.addNode(this.getBottomRightBlock(color.darker()))
     }
 
-    private fun getBaseBlock(): Polygon {
+    private fun getBaseBlock(color: Color): Polygon {
         val block = Polygon(
                 0.0, height / 2.0, // left corner
                 width / 2.0, 0.0, // top corner
@@ -29,12 +31,12 @@ class StackBlock(
                 width / 2.0, height // bottom corner
         )
 
-        block.fill = Color.GRAY
+        block.fill = color
 
         return block
     }
 
-    private fun getBottomLeftBlock(): Polygon {
+    private fun getBottomLeftBlock(color: Color): Polygon {
         val block = Polygon(
                 0.0, height / 2.0, // top left corner
                 width / 2.0, height, // top right corner
@@ -42,12 +44,12 @@ class StackBlock(
                 0.0, height / 2.0 + thickness // bottom left corner
         )
 
-        block.fill = Color.DARKSLATEGRAY
+        block.fill = color
 
         return block
     }
 
-    private fun getBottomRightBlock(): Polygon {
+    private fun getBottomRightBlock(color: Color): Polygon {
         val block = Polygon(
                 width / 2.0, height, // top left corner
                 width, height / 2.0, // top right corner
@@ -55,7 +57,7 @@ class StackBlock(
                 width / 2.0, height + thickness // bottom left corner
         )
 
-        block.fill = Color.DARKGRAY
+        block.fill = color
 
         return block
     }
