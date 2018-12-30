@@ -22,6 +22,10 @@ class StackMoveControl(
 
     override fun onAdded(entity: Entity?) {
         position.y = initPositionY
+
+        if (direction == StackDirection.RIGHT) {
+            position.y += StackScale.stackBlockScale * StackScale.stackBlockHeight / 2.0
+        }
     }
 
     override fun onUpdate(p0: Entity?, p1: Double) {
