@@ -2,11 +2,16 @@ package stack
 
 import javafx.application.Application
 import com.almasb.fxgl.app.GameApplication
+import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.input.UserAction
 import com.almasb.fxgl.settings.GameSettings
 import javafx.scene.input.KeyCode
+import stack.control.StackMoveControl
 
 class Stack : GameApplication() {
+
+    private var player: Entity? = null
+    private var stackMoveControl: StackMoveControl? = null
 
     override fun initSettings(settings: GameSettings) {
         with(settings) {
@@ -19,16 +24,21 @@ class Stack : GameApplication() {
     }
 
     override fun initGame() {
-        gameWorld.spawn("Player")
-        gameWorld.spawn("Block")
+        spawnPlayer()
     }
 
     override fun initInput() {
         input.addAction(object : UserAction("Release Block") {
             override fun onActionBegin() {
-                TODO("not implemented")
+                stackMoveControl?.releaseBlock()
+                spawnPlayer()
             }
         }, KeyCode.SPACE)
+    }
+
+    private fun spawnPlayer() {
+        player = gameWorld.spawn("Player")
+        stackMoveControl = player?.getControl(StackMoveControl::class.java)
     }
 }
 
