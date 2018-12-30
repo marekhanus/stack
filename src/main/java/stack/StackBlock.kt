@@ -5,7 +5,7 @@ import javafx.scene.Node
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
 
-class StackBlock(private val view: EntityView = EntityView()) {
+class StackBlock(private val view: EntityView = EntityView(), val size: Int = 50) {
 
     fun get(): Node? {
         return this.view
