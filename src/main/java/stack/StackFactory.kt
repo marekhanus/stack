@@ -4,6 +4,7 @@ import com.almasb.fxgl.entity.*
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
 import stack.control.BlockControl
+import stack.control.MoveControl
 
 @SetEntityFactory
 class StackFactory : EntityFactory {
@@ -15,6 +16,7 @@ class StackFactory : EntityFactory {
                 .from(data)
                 .viewFromNodeWithBBox(Rectangle(25.0, 25.0, Color.BLUE))
                 .with(BlockControl())
+                .with(MoveControl())
                 .build()
     }
 
