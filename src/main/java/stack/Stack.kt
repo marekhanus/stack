@@ -2,7 +2,9 @@ package stack
 
 import javafx.application.Application
 import com.almasb.fxgl.app.GameApplication
+import com.almasb.fxgl.input.UserAction
 import com.almasb.fxgl.settings.GameSettings
+import javafx.scene.input.KeyCode
 
 class Stack : GameApplication() {
 
@@ -18,6 +20,14 @@ class Stack : GameApplication() {
 
     override fun initGame() {
         gameWorld.spawn("Block")
+    }
+
+    override fun initInput() {
+        input.addAction(object : UserAction("Release Block") {
+            override fun onActionBegin() {
+                TODO("not implemented")
+            }
+        }, KeyCode.SPACE)
     }
 }
 
