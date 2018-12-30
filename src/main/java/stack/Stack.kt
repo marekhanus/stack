@@ -10,8 +10,8 @@ class Stack : GameApplication() {
 
     override fun initSettings(settings: GameSettings) {
         with(settings) {
-            width = 1080 / 4
-            height = 1920 / 4
+            width = (StackScale.gameSize * 0.5625).toInt()
+            height = (StackScale.gameSize * 1.0).toInt()
             title = "Stack"
             version = "0.1"
             // other settings
