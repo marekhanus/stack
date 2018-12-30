@@ -8,9 +8,9 @@ class Stack : GameApplication() {
 
     override fun initSettings(settings: GameSettings) {
         with(settings) {
-            width = 800
-            height = 600
-            title = "Basic Game App"
+            width = 1080 / 4
+            height = 1920 / 4
+            title = "Stack"
             version = "0.1"
             // other settings
         }
