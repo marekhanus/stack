@@ -23,8 +23,8 @@ class StackMoveControl(
     override fun onAdded(entity: Entity?) {
         position.y = initPositionY
 
-        if (direction == StackDirection.RIGHT) {
-            position.y += StackScale.stackBlockScale * StackScale.stackBlockHeight / 2.0
+        if (direction == StackDirection.LEFT) {
+            position.y -= StackScale.stackBlockScale * StackScale.stackBlockHeight / 2.0
         }
     }
 
@@ -43,6 +43,12 @@ class StackMoveControl(
             direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
             orientation = if (orientation == StackOrientation.DOWN) StackOrientation.UP else StackOrientation.DOWN
         }
+    }
+
+    fun setCenterPosition() {
+        val oldPositionX = position.x
+        position.x += (FXGL.getApp().width - StackScale.stackBlockScale * StackScale.stackBlockWidth) / 2.0
+        position.y -= (oldPositionX - position.x) * StackScale.stackBlockHeight
     }
 
     fun releaseBlock() {

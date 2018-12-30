@@ -25,6 +25,10 @@ class Stack : GameApplication() {
 
     override fun initGame() {
         spawnPlayer()
+        stackMoveControl?.setCenterPosition()
+        stackMoveControl?.releaseBlock()
+
+        spawnPlayer()
     }
 
     override fun initInput() {
