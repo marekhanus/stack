@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.entity.component.PositionComponent
 import stack.StackBlock
 import stack.StackDirection
+import stack.StackOrientation
 
 class StackMoveControl(
         private val minPosition: Double = - StackBlock.width / 2.0,
@@ -14,16 +15,18 @@ class StackMoveControl(
 
     private val position: PositionComponent = PositionComponent()
     private var direction: StackDirection = StackDirection.LEFT
+    private var orientation: StackOrientation = StackOrientation.DOWN
 
     override fun onUpdate(p0: Entity?, p1: Double) {
         position.x += 1.0 * (if (direction == StackDirection.LEFT) 1 else -1)
-        position.y += 1.0 * (if (direction == StackDirection.LEFT) 1 else -1)
+        position.y += 1.0 * (if (orientation == StackOrientation.DOWN) 1 else -1)
 
         if (
                 position.x == minPosition || position.y == minPosition ||
                 position.x == maxPosition || position.y == maxPosition
         ) {
             direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
+            orientation = if (orientation == StackOrientation.DOWN) StackOrientation.UP else StackOrientation.DOWN
         }
     }
 }
