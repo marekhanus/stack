@@ -4,7 +4,7 @@ import com.almasb.fxgl.entity.view.EntityView
 import javafx.scene.paint.Color
 import javafx.scene.shape.Polygon
 
-class StackBlock(private val view: EntityView = EntityView(), val size: Double = 50.0) {
+class StackBlock(private val view: EntityView = EntityView(), val size: Double = 50.0, val height: Double = 5.0) {
 
     fun get(): EntityView {
         return this.view
@@ -12,6 +12,7 @@ class StackBlock(private val view: EntityView = EntityView(), val size: Double =
 
     init {
         view.addNode(this.getBaseBlock())
+        view.addNode(this.getBottomLeftBlock())
     }
 
     private fun getBaseBlock(): Polygon {
@@ -23,6 +24,19 @@ class StackBlock(private val view: EntityView = EntityView(), val size: Double =
         )
 
         block.fill = Color.GRAY
+
+        return block
+    }
+
+    private fun getBottomLeftBlock(): Polygon {
+        val block = Polygon(
+                0.0, size / 2.0, // top left corner
+                size / 2.0, size, // top right corner
+                size / 2.0, size + height, // bottom right corner
+                0.0, size / 2.0 + height // bottom left corner
+        )
+
+        block.fill = Color.DARKGRAY
 
         return block
     }
