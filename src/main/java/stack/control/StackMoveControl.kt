@@ -24,6 +24,11 @@ class StackMoveControl(
     private val leftCornerPositionY: Double = - StackBlock.height / 2.0
     private val rightCornerPositionY: Double = FXGL.getApp().height - StackBlock.height / 2.0
 
+    private var cropFromTopLeft: Double = 0.0
+    private var cropFromTopRight: Double = 0.0
+    private var cropFromBottomRight: Double = 0.0
+    private var cropFromBottomLeft: Double = 0.0
+
     private var offsetX: Double = 0.0
     private var offsetY: Double = 0.0
 
@@ -76,6 +81,11 @@ class StackMoveControl(
         val view = this.entity.view
         view.clearChildren()
 
+        this.cropFromTopLeft = cropFromTopLeft
+        this.cropFromTopRight = cropFromTopRight
+        this.cropFromBottomRight = cropFromBottomRight
+        this.cropFromBottomLeft = cropFromBottomLeft
+
         StackBlock(
                 this.entity.view,
                 cropFromTopLeft,
@@ -93,7 +103,7 @@ class StackMoveControl(
             return Math.sqrt(offsetX * offsetX / 2.0)
         }
 
-        return 0.0
+        return cropFromTopLeft
     }
 
     fun getCropFromTopRight(): Double {
@@ -104,11 +114,10 @@ class StackMoveControl(
             return Math.sqrt(offsetX * offsetX / 2.0)
         }
 
-        return 0.0
+        return cropFromTopRight
     }
 
     fun getCropFromBottomRight(): Double {
-
         if ((
                 (orientation == StackOrientation.UP && direction == StackDirection.LEFT) ||
                 (orientation == StackOrientation.DOWN && direction == StackDirection.RIGHT)
@@ -116,7 +125,7 @@ class StackMoveControl(
             return Math.sqrt(offsetX * offsetX / 2.0)
         }
 
-        return 0.0
+        return cropFromBottomRight
     }
 
     fun getCropFromBottomLeft(): Double {
@@ -127,6 +136,6 @@ class StackMoveControl(
             return Math.sqrt(offsetX * offsetX / 2.0)
         }
 
-        return 0.0
+        return cropFromBottomLeft
     }
 }
