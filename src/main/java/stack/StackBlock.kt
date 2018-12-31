@@ -6,14 +6,10 @@ import javafx.scene.shape.Polygon
 
 class StackBlock(
         private val view: EntityView = EntityView(),
-        offsetLeftCornerX: Double = 0.0,
-        offsetLeftCornerY: Double = 0.0,
-        offsetTopCornerX: Double = 0.0,
-        offsetTopCornerY: Double = 0.0,
-        offsetRightCornerX: Double = 0.0,
-        offsetRightCornerY: Double = 0.0,
-        offsetBottomCornerX: Double = 0.0,
-        offsetBottomCornerY: Double = 0.0
+        offsetLeftCorner: Double = 0.0,
+        offsetTopCorner: Double = 0.0,
+        offsetRightCorner: Double = 0.0,
+        offsetBottomCorner: Double = 0.0
 ) {
 
     private var leftCornerX: Double = 0.0
@@ -32,14 +28,19 @@ class StackBlock(
     }
 
     init {
-        leftCornerX   = offsetLeftCornerX   + 0.0
-        leftCornerY   = offsetLeftCornerY   + height / 2.0
-        topCornerX    = offsetTopCornerX    + width / 2.0
-        topCornerY    = offsetTopCornerY    + 0.0
-        rightCornerX  = offsetRightCornerX  + width
-        rightCornerY  = offsetRightCornerY  + height / 2.0
-        bottomCornerX = offsetBottomCornerX + width / 2.0
-        bottomCornerY = offsetBottomCornerY + height
+        leftCornerX   = 0.0
+        leftCornerY   = height / 2.0
+        topCornerX    = width / 2.0
+        topCornerY    = 0.0
+        rightCornerX  = width
+        rightCornerY  = height / 2.0
+        bottomCornerX = width / 2.0
+        bottomCornerY = height
+
+        leftCornerX   += offsetLeftCorner
+        topCornerY    += offsetTopCorner
+        rightCornerX  -= offsetRightCorner
+        bottomCornerY -= offsetBottomCorner
     }
 
     fun get(): EntityView {
