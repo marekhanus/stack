@@ -2,6 +2,7 @@ package stack
 
 import javafx.application.Application
 import com.almasb.fxgl.app.GameApplication
+import com.almasb.fxgl.app.inc
 import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.input.UserAction
 import com.almasb.fxgl.settings.GameSettings
@@ -29,6 +30,10 @@ class Stack : GameApplication() {
         }
     }
 
+    override fun initGameVars(vars: MutableMap<String, Any>?) {
+        vars!!["score"] = 0
+    }
+
     override fun initGame() {
         spawnPlayer()
         stackMoveControl?.setCenterPosition()
@@ -49,6 +54,8 @@ class Stack : GameApplication() {
         input.addAction(object : UserAction("Release Block") {
             override fun onActionBegin() {
                 stackMoveControl?.releaseBlock()
+
+                inc("score", +50)
 
                 cropFromTopLeft     = stackMoveControl?.getCropFromBottomRight()!!
                 cropFromTopRight    = stackMoveControl?.getCropFromBottomLeft()!!
