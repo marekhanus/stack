@@ -23,7 +23,9 @@ class StackFactory : EntityFactory {
             position += StackScale.stackBlockScale * StackScale.stackBlockThickness
 
             FXGL.getApp().gameWorld.entities.forEach {
-                it.positionComponent.y += StackScale.stackBlockScale * StackScale.stackBlockThickness
+                if (it.positionComponent.y != 0.0) {
+                    it.positionComponent.y += StackScale.stackBlockScale * StackScale.stackBlockThickness
+                }
             }
         }
 
