@@ -2,6 +2,9 @@ package stack
 
 import com.almasb.fxgl.app.FXGL
 import com.almasb.fxgl.entity.*
+import com.almasb.fxgl.entity.view.EntityView
+import javafx.scene.paint.Color
+import javafx.scene.shape.Rectangle
 import stack.control.StackMoveControl
 
 @SetEntityFactory
@@ -29,6 +32,14 @@ class StackFactory : EntityFactory {
                 .from(data)
                 .viewFromNode(StackBlock().setColor(color).get())
                 .with(StackMoveControl(direction, position, color))
+                .build()
+    }
+
+    @Spawns("BG")
+    fun newBackground(data: SpawnData): Entity {
+        return Entities.builder()
+                .at(0.0, 0.0)
+                .viewFromNode(EntityView(Rectangle(FXGL.getApp().width.toDouble(), FXGL.getApp().height.toDouble(), Color.LIGHTGREEN), RenderLayer.BACKGROUND))
                 .build()
     }
 }

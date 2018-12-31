@@ -38,6 +38,8 @@ class Stack : GameApplication() {
     }
 
     override fun initGame() {
+        gameWorld.spawn("BG")
+
         spawnPlayer()
         stackMoveControl?.setCenterPosition()
         stackMoveControl?.releaseBlock()
@@ -69,6 +71,7 @@ class Stack : GameApplication() {
                     }
 
                     gameScene.clear()
+                    gameWorld.spawn("BG")
                 }
 
                 stackMoveControl?.releaseBlock()
