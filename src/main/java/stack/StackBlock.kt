@@ -6,15 +6,18 @@ import javafx.scene.shape.Polygon
 
 class StackBlock(
         private val view: EntityView = EntityView(),
-        private var leftCornerX: Double = 0.0,
-        private var leftCornerY: Double = 0.0,
-        private var topCornerX: Double = 0.0,
-        private var topCornerY: Double = 0.0,
-        private var rightCornerX: Double = 0.0,
-        private var rightCornerY: Double = 0.0,
-        private var bottomCornerX: Double = 0.0,
-        private var bottomCornerY: Double = 0.0
 
+        private var leftCornerX: Double = 0.0,
+        private var leftCornerY: Double = height / 2.0,
+
+        private var topCornerX: Double = width / 2.0,
+        private var topCornerY: Double = 0.0,
+
+        private var rightCornerX: Double = width,
+        private var rightCornerY: Double = height / 2.0,
+
+        private var bottomCornerX: Double = width / 2.0,
+        private var bottomCornerY: Double = height
 ) {
     companion object {
         const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
@@ -28,18 +31,6 @@ class StackBlock(
 
     init {
         val color = Color.GRAY
-
-        leftCornerX = 0.0
-        leftCornerY = height / 2.0
-
-        topCornerX = width / 2.0
-        topCornerY = 0.0
-
-        rightCornerX = width
-        rightCornerY = height / 2.0
-
-        bottomCornerX = width / 2.0
-        bottomCornerY = height
 
         view.addNode(this.getBaseBlock(color))
         view.addNode(this.getBottomLeftBlock(color.darker().darker()))
