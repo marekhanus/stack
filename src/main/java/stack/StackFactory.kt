@@ -16,6 +16,14 @@ class StackFactory : EntityFactory {
         direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
         val color = StackColor().get()
 
+        if (position < StackScale.stackBlockScale * StackScale.stackBlockThickness) {
+            position += StackScale.stackBlockScale * StackScale.stackBlockThickness
+
+            FXGL.getApp().gameWorld.entities.forEach {
+                it.positionComponent.y += StackScale.stackBlockScale * StackScale.stackBlockThickness
+            }
+        }
+
         return Entities.builder()
                 .type(StackType.BLOCK_ELEMENT)
                 .from(data)
