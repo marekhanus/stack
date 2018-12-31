@@ -6,19 +6,15 @@ import javafx.scene.shape.Polygon
 
 class StackBlock(
         private val view: EntityView = EntityView(),
-        private val cropFromTopLeft: Double = 0.0,
-        private val cropFromTopRight: Double = 0.0,
-        private val cropFromBottomRight: Double = 0.0,
-        private val cropFromBottomLeft: Double = 0.0
+        private var leftCornerX: Double = 0.0,
+        private var leftCornerY: Double = height / 2.0,
+        private var topCornerX: Double = width / 2.0,
+        private var topCornerY: Double = 0.0,
+        private var rightCornerX: Double = width,
+        private var rightCornerY: Double = height / 2.0,
+        private var bottomCornerX: Double = width / 2.0,
+        private var bottomCornerY: Double = height
 ) {
-    private var leftCornerX: Double = 0.0
-    private var leftCornerY: Double = height / 2.0
-    private var topCornerX: Double = width / 2.0
-    private var topCornerY: Double = 0.0
-    private var rightCornerX: Double = width
-    private var rightCornerY: Double = height / 2.0
-    private var bottomCornerX: Double = width / 2.0
-    private var bottomCornerY: Double = height
 
     companion object {
         const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
@@ -26,64 +22,16 @@ class StackBlock(
         const val thickness: Double = StackScale.stackBlockScale * StackScale.stackBlockThickness
     }
 
+    init {}
+
     fun get(): EntityView {
-        return this.view
-    }
-
-    init {
         val color = Color.GRAY
-
-        crop()
 
         view.addNode(this.getBaseBlock(color))
         view.addNode(this.getBottomLeftBlock(color.darker().darker()))
         view.addNode(this.getBottomRightBlock(color.darker()))
-    }
 
-    private fun crop() {
-        if (cropFromTopLeft > 0.0) {
-            val cropX: Double = Math.sqrt(2.0 * cropFromTopLeft * cropFromTopLeft)
-            val cropY: Double = cropX * StackScale.stackBlockHeight
-
-            leftCornerX += cropX
-            leftCornerY += cropY
-
-            topCornerX += cropX
-            topCornerY += cropY
-        }
-
-        if (cropFromTopRight > 0.0) {
-            val cropX: Double = Math.sqrt(2.0 * cropFromTopRight * cropFromTopRight)
-            val cropY: Double = cropX * StackScale.stackBlockHeight
-
-            topCornerX -= cropX
-            topCornerY += cropY
-
-            rightCornerX -= cropX
-            rightCornerY += cropY
-        }
-
-        if (cropFromBottomRight > 0.0) {
-            val cropX: Double = Math.sqrt(2.0 * cropFromBottomRight * cropFromBottomRight)
-            val cropY: Double = cropX * StackScale.stackBlockHeight
-
-            rightCornerX -= cropX
-            rightCornerY -= cropY
-
-            bottomCornerX -= cropX
-            bottomCornerY -= cropY
-        }
-
-        if (cropFromBottomLeft > 0.0) {
-            val cropX: Double = Math.sqrt(2.0 * cropFromBottomLeft * cropFromBottomLeft)
-            val cropY: Double = cropX * StackScale.stackBlockHeight
-
-            leftCornerX += cropX
-            leftCornerY -= cropY
-
-            bottomCornerX += cropX
-            bottomCornerY -= cropY
-        }
+        return this.view
     }
 
     private fun getBaseBlock(color: Color): Polygon {
