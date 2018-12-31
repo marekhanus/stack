@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.input.UserAction
 import com.almasb.fxgl.settings.GameSettings
 import javafx.scene.input.KeyCode
+import javafx.scene.text.Text
 import stack.control.StackMoveControl
 
 class Stack : GameApplication() {
@@ -34,6 +35,14 @@ class Stack : GameApplication() {
         stackMoveControl?.releaseBlock()
 
         spawnPlayer()
+    }
+
+    override fun initUI() {
+        val textPixels = Text("0")
+        textPixels.translateX = 50.0
+        textPixels.translateY = 100.0
+
+        gameScene.addUINode(textPixels)
     }
 
     override fun initInput() {
