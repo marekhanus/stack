@@ -72,9 +72,7 @@ class Stack : GameApplication() {
     }
 
     private fun spawnPlayer() {
-        if (textPixels != null) {
-            textPixels!!.text = geti("score").toString()
-        }
+        textPixels?.text = geti("score").toString()
         player = gameWorld.spawn("Player")
         stackMoveControl = player?.getControl(StackMoveControl::class.java)
     }
