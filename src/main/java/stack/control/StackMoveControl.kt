@@ -59,6 +59,62 @@ class StackMoveControl(
     }
 
     fun releaseBlock() {
+        val view = this.entity.view
+        view.clearChildren()
+
+        StackBlock(
+                this.entity.view,
+                getCropFromTopLeft(),
+                getCropFromTopRight(),
+                getCropFromBottomRight(),
+                getCropFromBottomLeft()
+        ).get()
+
         isMovable = false
+    }
+
+    fun getCropFromTopLeft(): Double {
+        if ((
+                (orientation == StackOrientation.UP && direction == StackDirection.LEFT) ||
+                (orientation == StackOrientation.DOWN && direction == StackDirection.RIGHT)
+        ) && offsetX < 0) {
+            return Math.sqrt(offsetX * offsetX / 2.0)
+        }
+
+        return 0.0
+    }
+
+    fun getCropFromTopRight(): Double {
+        if ((
+                (orientation == StackOrientation.UP && direction == StackDirection.RIGHT) ||
+                (orientation == StackOrientation.DOWN && direction == StackDirection.LEFT)
+        ) && offsetX > 0) {
+            return Math.sqrt(offsetX * offsetX / 2.0)
+        }
+
+        return 0.0
+    }
+
+    fun getCropFromBottomRight(): Double {
+
+        if ((
+                (orientation == StackOrientation.UP && direction == StackDirection.LEFT) ||
+                (orientation == StackOrientation.DOWN && direction == StackDirection.RIGHT)
+        ) && offsetX > 0) {
+            return Math.sqrt(offsetX * offsetX / 2.0)
+        }
+
+        return 0.0
+    }
+
+    fun getCropFromBottomLeft(): Double {
+        if ((
+                (orientation == StackOrientation.UP && direction == StackDirection.RIGHT) ||
+                (orientation == StackOrientation.DOWN && direction == StackDirection.LEFT)
+        ) && offsetX < 0) {
+            return Math.sqrt(offsetX * offsetX / 2.0)
+        }
+
+        return 0.0
     }
 }
