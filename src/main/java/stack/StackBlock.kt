@@ -29,6 +29,38 @@ class StackBlock(
     init {
         val color = Color.GRAY
 
+        if (false) {
+            leftCornerX += Math.sqrt(2.0 * 10.0 * 10.0)
+            leftCornerY += Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+
+            topCornerX += Math.sqrt(2.0 * 10.0 * 10.0)
+            topCornerY += Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+        }
+
+        if (false) { // crop from top right
+            topCornerX -= Math.sqrt(2.0 * 10.0 * 10.0)
+            topCornerY += Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+
+            rightCornerX -= Math.sqrt(2.0 * 10.0 * 10.0)
+            rightCornerY += Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+        }
+
+        if (false) { // crop from bottom right
+            rightCornerX -= Math.sqrt(2.0 * 10.0 * 10.0)
+            rightCornerY -= Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+
+            bottomCornerX -= Math.sqrt(2.0 * 10.0 * 10.0)
+            bottomCornerY -= Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+        }
+
+        if (false) { // crop from bottom left
+            leftCornerX += Math.sqrt(2.0 * 10.0 * 10.0)
+            leftCornerY -= Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+
+            bottomCornerX += Math.sqrt(2.0 * 10.0 * 10.0)
+            bottomCornerY -= Math.sqrt(2.0 * 10.0 * 10.0) * StackScale.stackBlockHeight
+        }
+
         view.addNode(this.getBaseBlock(color))
         view.addNode(this.getBottomLeftBlock(color.darker().darker()))
         view.addNode(this.getBottomRightBlock(color.darker()))
