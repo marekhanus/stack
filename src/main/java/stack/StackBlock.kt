@@ -33,6 +33,14 @@ class StackBlock(
     init {
         val color = Color.GRAY
 
+        crop()
+
+        view.addNode(this.getBaseBlock(color))
+        view.addNode(this.getBottomLeftBlock(color.darker().darker()))
+        view.addNode(this.getBottomRightBlock(color.darker()))
+    }
+
+    private fun crop() {
         if (cropFromTopLeft > 0.0) {
             val cropX: Double = Math.sqrt(2.0 * cropFromTopLeft * cropFromTopLeft)
             val cropY: Double = cropX * StackScale.stackBlockHeight
@@ -76,10 +84,6 @@ class StackBlock(
             bottomCornerX += cropX
             bottomCornerY -= cropY
         }
-
-        view.addNode(this.getBaseBlock(color))
-        view.addNode(this.getBottomLeftBlock(color.darker().darker()))
-        view.addNode(this.getBottomRightBlock(color.darker()))
     }
 
     private fun getBaseBlock(color: Color): Polygon {
