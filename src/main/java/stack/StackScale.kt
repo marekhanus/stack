@@ -2,7 +2,7 @@ package stack
 
 class StackScale {
     companion object {
-        const val gameSize: Double = 400.0
+        const val gameSize: Double = 600.0
 
         const val scorePositionOffsetXY: Double = 30.0
 
