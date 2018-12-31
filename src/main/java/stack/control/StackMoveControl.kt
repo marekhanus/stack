@@ -77,6 +77,24 @@ class StackMoveControl(
         isMovable = false
     }
 
+    fun isGameOver(): Boolean {
+        val width = StackScale.stackBlockScale * StackScale.stackBlockWidth / 2.0
+        val height = StackScale.stackBlockScale * StackScale.stackBlockHeight / 2.0
+
+        val sqrt = Math.sqrt(width * width + height * height) / 2.0
+
+        if (
+                getCropFromTopLeft() > sqrt ||
+                getCropFromTopRight() > sqrt ||
+                getCropFromBottomRight() > sqrt ||
+                getCropFromBottomLeft() > sqrt
+        ) {
+            return true
+        }
+
+        return false
+    }
+
     fun crop(cropFromTopLeft: Double, cropFromTopRight: Double, cropFromBottomRight: Double, cropFromBottomLeft: Double) {
         this.entity.view.clearChildren()
 
