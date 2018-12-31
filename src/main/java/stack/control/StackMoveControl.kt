@@ -53,9 +53,8 @@ class StackMoveControl(
     }
 
     fun setCenterPosition() {
-        val oldPositionX = position.x
         position.x += (FXGL.getApp().width - StackScale.stackBlockScale * StackScale.stackBlockWidth) / 2.0
-        position.y -= (oldPositionX - position.x) * StackScale.stackBlockHeight
+        position.y -= ((FXGL.getApp().width - StackScale.stackBlockScale * StackScale.stackBlockWidth) / 2.0 - position.x) * StackScale.stackBlockHeight
     }
 
     fun releaseBlock() {
