@@ -39,6 +39,7 @@ class StackFactory : EntityFactory {
     fun newBackground(data: SpawnData): Entity {
         return Entities.builder()
                 .at(0.0, 0.0)
+//                .viewFromNodeWithBBox(FXGL.getAssetLoader().loadTexture("hot-chick.jpg", FXGL.getApp().width.toDouble(), FXGL.getApp().height.toDouble()))
                 .viewFromNode(EntityView(Rectangle(FXGL.getApp().width.toDouble(), FXGL.getApp().height.toDouble(), Color.LIGHTGREEN), RenderLayer.BACKGROUND))
                 .build()
     }
