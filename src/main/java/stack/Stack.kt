@@ -56,6 +56,13 @@ class Stack : GameApplication() {
     override fun initInput() {
         input.addAction(object : UserAction("Release Block") {
             override fun onActionBegin() {
+                if (stackMoveControl?.isGameOver()!!) {
+                    display.showMessageBox("Game over!\nYour score: " + geti("score").toString())
+                    gameScene.clear()
+
+                    return
+                }
+
                 stackMoveControl?.releaseBlock()
 
                 inc("score", +1)
