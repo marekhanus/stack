@@ -1,5 +1,6 @@
 package stack
 
+import com.almasb.fxgl.app.FXGL
 import javafx.application.Application
 import com.almasb.fxgl.app.GameApplication
 import com.almasb.fxgl.app.geti
@@ -46,8 +47,8 @@ class Stack : GameApplication() {
 
     override fun initUI() {
         textPixels = Text(geti("score").toString())
-        textPixels!!.translateX = 50.0
-        textPixels!!.translateY = 100.0
+        textPixels!!.translateX = FXGL.getApp().width - StackScale.scorePositionOffsetXY
+        textPixels!!.translateY = StackScale.scorePositionOffsetXY
 
         gameScene.addUINode(textPixels)
     }
