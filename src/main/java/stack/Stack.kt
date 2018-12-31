@@ -57,10 +57,18 @@ class Stack : GameApplication() {
         input.addAction(object : UserAction("Release Block") {
             override fun onActionBegin() {
                 if (stackMoveControl?.isGameOver()!!) {
-                    display.showMessageBox("Game over!\nYour score: " + geti("score").toString())
-                    gameScene.clear()
+                    val stackScoreUpdater = StackScoreUpdater()
+                    stackScoreUpdater.downloadHighScore()
 
-                    return
+                    display.showMessageBox("Game over!\nYour score: " + geti("score").toString() + "\n" +
+                        "High score: " + stackScoreUpdater.highScoreScore + "\n" +
+                        "Master: " + stackScoreUpdater.highScoreName)
+
+                    display.showInputBox("Your name:") {
+                        answer -> stackScoreUpdater.sendScore(geti("score"), answer)
+                    }
+
+                    gameScene.clear()
                 }
 
                 stackMoveControl?.releaseBlock()
