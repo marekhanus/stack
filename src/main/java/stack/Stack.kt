@@ -2,6 +2,7 @@ package stack
 
 import javafx.application.Application
 import com.almasb.fxgl.app.GameApplication
+import com.almasb.fxgl.app.geti
 import com.almasb.fxgl.app.inc
 import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.input.UserAction
@@ -14,6 +15,7 @@ class Stack : GameApplication() {
 
     private var player: Entity? = null
     private var stackMoveControl: StackMoveControl? = null
+    private var textPixels: Text? = null
 
     private var cropFromTopLeft: Double = 0.0
     private var cropFromTopRight: Double = 0.0
@@ -43,9 +45,9 @@ class Stack : GameApplication() {
     }
 
     override fun initUI() {
-        val textPixels = Text("0")
-        textPixels.translateX = 50.0
-        textPixels.translateY = 100.0
+        textPixels = Text(geti("score").toString())
+        textPixels!!.translateX = 50.0
+        textPixels!!.translateY = 100.0
 
         gameScene.addUINode(textPixels)
     }
@@ -55,7 +57,7 @@ class Stack : GameApplication() {
             override fun onActionBegin() {
                 stackMoveControl?.releaseBlock()
 
-                inc("score", +50)
+                inc("score", +1)
 
                 cropFromTopLeft     = stackMoveControl?.getCropFromBottomRight()!!
                 cropFromTopRight    = stackMoveControl?.getCropFromBottomLeft()!!
@@ -69,6 +71,9 @@ class Stack : GameApplication() {
     }
 
     private fun spawnPlayer() {
+        if (textPixels != null) {
+            textPixels!!.text = geti("score").toString()
+        }
         player = gameWorld.spawn("Player")
         stackMoveControl = player?.getControl(StackMoveControl::class.java)
     }
