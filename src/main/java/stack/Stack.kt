@@ -13,6 +13,11 @@ class Stack : GameApplication() {
     private var player: Entity? = null
     private var stackMoveControl: StackMoveControl? = null
 
+    private var cropFromTopLeft: Double = 0.0
+    private var cropFromTopRight: Double = 0.0
+    private var cropFromBottomRight: Double = 0.0
+    private var cropFromBottomLeft: Double = 0.0
+
     override fun initSettings(settings: GameSettings) {
         with(settings) {
             width = (StackScale.gameSize * 0.5625).toInt()
@@ -35,7 +40,14 @@ class Stack : GameApplication() {
         input.addAction(object : UserAction("Release Block") {
             override fun onActionBegin() {
                 stackMoveControl?.releaseBlock()
+
+                cropFromTopLeft     = stackMoveControl?.getCropFromBottomRight()!!
+                cropFromTopRight    = stackMoveControl?.getCropFromBottomLeft()!!
+                cropFromBottomRight = stackMoveControl?.getCropFromTopLeft()!!
+                cropFromBottomLeft  = stackMoveControl?.getCropFromTopRight()!!
+
                 spawnPlayer()
+                stackMoveControl?.crop(cropFromTopLeft, cropFromTopRight, cropFromBottomRight, cropFromBottomLeft)
             }
         }, KeyCode.SPACE)
     }

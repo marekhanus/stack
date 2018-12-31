@@ -72,6 +72,19 @@ class StackMoveControl(
         isMovable = false
     }
 
+    fun crop(cropFromTopLeft: Double, cropFromTopRight: Double, cropFromBottomRight: Double, cropFromBottomLeft: Double) {
+        val view = this.entity.view
+        view.clearChildren()
+
+        StackBlock(
+                this.entity.view,
+                cropFromTopLeft,
+                cropFromTopRight,
+                cropFromBottomRight,
+                cropFromBottomLeft
+        ).get()
+    }
+
     fun getCropFromTopLeft(): Double {
         if ((
                 (orientation == StackOrientation.UP && direction == StackDirection.LEFT) ||
