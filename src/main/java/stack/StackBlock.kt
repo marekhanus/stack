@@ -34,43 +34,47 @@ class StackBlock(
         val color = Color.GRAY
 
         if (cropFromTopLeft > 0.0) {
-            val crop: Double = Math.sqrt(2.0 * cropFromTopLeft * cropFromTopLeft)
+            val cropX: Double = Math.sqrt(2.0 * cropFromTopLeft * cropFromTopLeft)
+            val cropY: Double = cropX * StackScale.stackBlockHeight
 
-            leftCornerX += crop
-            leftCornerY += crop * StackScale.stackBlockHeight
+            leftCornerX += cropX
+            leftCornerY += cropY
 
-            topCornerX += crop
-            topCornerY += crop * StackScale.stackBlockHeight
+            topCornerX += cropX
+            topCornerY += cropY
         }
 
         if (cropFromTopRight > 0.0) {
-            val crop: Double = Math.sqrt(2.0 * cropFromTopRight * cropFromTopRight)
+            val cropX: Double = Math.sqrt(2.0 * cropFromTopRight * cropFromTopRight)
+            val cropY: Double = cropX * StackScale.stackBlockHeight
 
-            topCornerX -= crop
-            topCornerY += crop * StackScale.stackBlockHeight
+            topCornerX -= cropX
+            topCornerY += cropY
 
-            rightCornerX -= crop
-            rightCornerY += crop * StackScale.stackBlockHeight
+            rightCornerX -= cropX
+            rightCornerY += cropY
         }
 
         if (cropFromBottomRight > 0.0) {
-            val crop: Double = Math.sqrt(2.0 * cropFromBottomRight * cropFromBottomRight)
+            val cropX: Double = Math.sqrt(2.0 * cropFromBottomRight * cropFromBottomRight)
+            val cropY: Double = cropX * StackScale.stackBlockHeight
 
-            rightCornerX -= crop
-            rightCornerY -= crop * StackScale.stackBlockHeight
+            rightCornerX -= cropX
+            rightCornerY -= cropY
 
-            bottomCornerX -= crop
-            bottomCornerY -= crop * StackScale.stackBlockHeight
+            bottomCornerX -= cropX
+            bottomCornerY -= cropY
         }
 
         if (cropFromBottomLeft > 0.0) {
-            val crop: Double = Math.sqrt(2.0 * cropFromBottomLeft * cropFromBottomLeft)
+            val cropX: Double = Math.sqrt(2.0 * cropFromBottomLeft * cropFromBottomLeft)
+            val cropY: Double = cropX * StackScale.stackBlockHeight
 
-            leftCornerX += crop
-            leftCornerY -= crop * StackScale.stackBlockHeight
+            leftCornerX += cropX
+            leftCornerY -= cropY
 
-            bottomCornerX += crop
-            bottomCornerY -= crop * StackScale.stackBlockHeight
+            bottomCornerX += cropX
+            bottomCornerY -= cropY
         }
 
         view.addNode(this.getBaseBlock(color))
