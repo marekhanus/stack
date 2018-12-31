@@ -6,15 +6,24 @@ import javafx.scene.shape.Polygon
 
 class StackBlock(
         private val view: EntityView = EntityView(),
-        private var leftCornerX: Double = 0.0,
-        private var leftCornerY: Double = height / 2.0,
-        private var topCornerX: Double = width / 2.0,
-        private var topCornerY: Double = 0.0,
-        private var rightCornerX: Double = width,
-        private var rightCornerY: Double = height / 2.0,
-        private var bottomCornerX: Double = width / 2.0,
-        private var bottomCornerY: Double = height
+        offsetLeftCornerX: Double = 0.0,
+        offsetLeftCornerY: Double = 0.0,
+        offsetTopCornerX: Double = 0.0,
+        offsetTopCornerY: Double = 0.0,
+        offsetRightCornerX: Double = 0.0,
+        offsetRightCornerY: Double = 0.0,
+        offsetBottomCornerX: Double = 0.0,
+        offsetBottomCornerY: Double = 0.0
 ) {
+
+    private var leftCornerX: Double = 0.0
+    private var leftCornerY: Double = 0.0
+    private var topCornerX: Double = 0.0
+    private var topCornerY: Double = 0.0
+    private var rightCornerX: Double = 0.0
+    private var rightCornerY: Double = 0.0
+    private var bottomCornerX: Double = 0.0
+    private var bottomCornerY: Double = 0.0
 
     companion object {
         const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
@@ -22,7 +31,16 @@ class StackBlock(
         const val thickness: Double = StackScale.stackBlockScale * StackScale.stackBlockThickness
     }
 
-    init {}
+    init {
+        leftCornerX   = offsetLeftCornerX   + 0.0
+        leftCornerY   = offsetLeftCornerY   + height / 2.0
+        topCornerX    = offsetTopCornerX    + width / 2.0
+        topCornerY    = offsetTopCornerY    + 0.0
+        rightCornerX  = offsetRightCornerX  + width
+        rightCornerY  = offsetRightCornerY  + height / 2.0
+        bottomCornerX = offsetBottomCornerX + width / 2.0
+        bottomCornerY = offsetBottomCornerY + height
+    }
 
     fun get(): EntityView {
         val color = Color.GRAY
