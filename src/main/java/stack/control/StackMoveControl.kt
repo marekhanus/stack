@@ -26,7 +26,7 @@ class StackMoveControl(
     override fun onAdded(entity: Entity?) {
         position.y = initPositionY
 
-        if (direction == StackDirection.LEFT) {
+        if (direction == StackDirection.RIGHT) {
             position.y -= StackScale.stackBlockScale * StackScale.stackBlockHeight / 2.0
         }
     }
@@ -36,7 +36,7 @@ class StackMoveControl(
             return
         }
 
-        position.x += StackScale.stackBlockWidth * (if (direction == StackDirection.LEFT) 1 else -1)
+        position.x += StackScale.stackBlockWidth * (if (direction == StackDirection.RIGHT) 1 else -1)
         position.y += StackScale.stackBlockHeight * (if (orientation == StackOrientation.DOWN) 1 else -1)
 
         if (
