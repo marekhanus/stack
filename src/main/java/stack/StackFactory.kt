@@ -42,4 +42,10 @@ class StackFactory : EntityFactory {
                 .viewFromNode(EntityView(Rectangle(FXGL.getApp().width.toDouble(), FXGL.getApp().height.toDouble(), Color.LIGHTGREEN), RenderLayer.BACKGROUND))
                 .build()
     }
+
+    @Spawns("Reset")
+    fun reset(data: SpawnData): Entity {
+        position = FXGL.getApp().height.toDouble() * StackScale.stackInitBlockPositionY - FXGL.getApp().width.toDouble() * StackScale.stackBlockHeight / 2.0
+        return Entity()
+    }
 }

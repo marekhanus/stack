@@ -71,7 +71,10 @@ class Stack : GameApplication() {
                     }
 
                     gameScene.clear()
-                    gameWorld.spawn("BG")
+                    gameWorld.spawn("Reset")
+
+                    initGame()
+                    return
                 }
 
                 stackMoveControl?.releaseBlock()
