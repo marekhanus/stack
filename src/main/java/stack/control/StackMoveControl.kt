@@ -4,6 +4,7 @@ import com.almasb.fxgl.app.FXGL
 import com.almasb.fxgl.entity.Control
 import com.almasb.fxgl.entity.Entity
 import com.almasb.fxgl.entity.component.PositionComponent
+import javafx.scene.paint.Color
 import stack.StackBlock
 import stack.StackDirection
 import stack.StackOrientation
@@ -11,7 +12,8 @@ import stack.StackScale
 
 class StackMoveControl(
         private var direction: StackDirection,
-        private var initPositionY: Double
+        private var initPositionY: Double,
+        private var color: Color = Color.GRAY
 ) : Control() {
 
     private var isMovable: Boolean = true
@@ -72,7 +74,7 @@ class StackMoveControl(
                 getCropFromTopRight(),
                 getCropFromBottomRight(),
                 getCropFromBottomLeft()
-        ).get()
+        ).setColor(color).get()
 
         isMovable = false
     }
@@ -109,7 +111,7 @@ class StackMoveControl(
                 cropFromTopRight,
                 cropFromBottomRight,
                 cropFromBottomLeft
-        ).get()
+        ).setColor(color).get()
     }
 
     fun getCropFromTopLeft(): Double {

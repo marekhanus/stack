@@ -14,12 +14,13 @@ class StackFactory : EntityFactory {
     fun newPlayer(data: SpawnData): Entity {
         position -= StackScale.stackBlockScale * StackScale.stackBlockThickness
         direction = if (direction == StackDirection.LEFT) StackDirection.RIGHT else StackDirection.LEFT
+        val color = StackColor().get()
 
         return Entities.builder()
                 .type(StackType.BLOCK_ELEMENT)
                 .from(data)
-                .viewFromNode(StackBlock().get())
-                .with(StackMoveControl(direction, position))
+                .viewFromNode(StackBlock().setColor(color).get())
+                .with(StackMoveControl(direction, position, color))
                 .build()
     }
 }

@@ -20,24 +20,33 @@ class StackBlock(
     private var bottomCornerX: Double = width / 2.0
     private var bottomCornerY: Double = height
 
+    private var color: Color? = null
+
     companion object {
         const val width: Double = StackScale.stackBlockScale * StackScale.stackBlockWidth
         const val height: Double = StackScale.stackBlockScale * StackScale.stackBlockHeight
         const val thickness: Double = StackScale.stackBlockScale * StackScale.stackBlockThickness
     }
 
-    fun get(): EntityView {
-        return this.view
+    init {}
+
+    fun setColor(color: Color?): StackBlock {
+        this.color = color
+        return this
     }
 
-    init {
-        val color = Color.GRAY
-
+    fun get(): EntityView {
         crop()
 
-        view.addNode(this.getBaseBlock(color))
-        view.addNode(this.getBottomLeftBlock(color.darker().darker()))
-        view.addNode(this.getBottomRightBlock(color.darker()))
+        if (color == null) {
+            color = StackColor().get()
+        }
+
+        view.addNode(this.getBaseBlock(color!!))
+        view.addNode(this.getBottomLeftBlock(color!!.darker().darker()))
+        view.addNode(this.getBottomRightBlock(color!!.darker()))
+
+        return this.view
     }
 
     private fun crop() {
