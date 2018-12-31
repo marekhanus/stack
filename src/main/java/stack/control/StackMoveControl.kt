@@ -78,8 +78,7 @@ class StackMoveControl(
     }
 
     fun crop(cropFromTopLeft: Double, cropFromTopRight: Double, cropFromBottomRight: Double, cropFromBottomLeft: Double) {
-        val view = this.entity.view
-        view.clearChildren()
+        this.entity.view.clearChildren()
 
         this.cropFromTopLeft = cropFromTopLeft
         this.cropFromTopRight = cropFromTopRight
